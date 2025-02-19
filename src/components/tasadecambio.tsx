@@ -9,19 +9,39 @@ interface Personaje {
 }
 
 export default function TasaDeCambio() {
+  const customStyles = {
+    rows: {
+      style: {
+        backgroundColor: "#f0f0f0", // Color de fondo de las filas
+      },
+    },
+    headCells: {
+      style: {
+        fontWeight: "bold", // Negrita en los encabezados
+        color: "white", // Color de texto en los encabezados
+        backgroundColor:"green",
+        fontSize: '16px',
+      },
+    },
+    cells: {
+      style: {
+        paddingLeft: "16px", // Espacio interno en las celdas
+      },
+    },
+  };
   const columns = [
     {
-      name: "Nombre",
+      name: "Mon. Nacional",
       selector: (row: Personaje) => row.nombre,
       sortable: true,
     },
     {
-      name: "Apellido",
+      name: "Mon. Internacional",
       selector: (row: Personaje) => row.apellido,
       sortable: true,
     },
     {
-      name: "Edad",
+      name: "Cambio",
       selector: (row: Personaje) => row.edad,
       sortable: true,
     },
@@ -71,16 +91,17 @@ export default function TasaDeCambio() {
   };
   return (
     <>
-      <input type="text" onChange={handleChange} />
+      {/* <input type="text" onChange={handleChange} /> */}
 
       <DataTable
-        title= "Tasa de Cambio"
+        title="Tasa de Cambio"
         columns={columns}
         data={records}
-        selectableRows
-        pagination
+        //selectableRows
+        //pagination
         fixedHeader
         onSelectedRowsChange={(data) => console.log(data)}
+        customStyles={customStyles}
       />
     </>
   );
