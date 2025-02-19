@@ -2,3 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+.input-style{
+    border-style: solid;
+    width: 7rem;
+    height: 2rem;
+}
+.bg-login{
+    background-image: url("/conciliaciones/public/back-login.svg");
+}

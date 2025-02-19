@@ -7,7 +7,11 @@ export default {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        'background-login': "url('background-login.svg')"
+      }
+    },
   },
   plugins: [],
 } satisfies Config;
