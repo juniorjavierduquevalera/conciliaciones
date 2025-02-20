@@ -1,18 +1,30 @@
 "use client";
 import React, { useState } from "react";
 import DataTable from "react-data-table-component";
+import { TableStyles } from 'react-data-table-component';
 
 interface Personaje {
-  nombre: string;
-  apellido: string;
-  edad: number;
+  moneda_nacional: string;
+  moneda_extranjera: string;
+  cambio: number;
+  tasa_de_cambio: number;
+  fecha: string;
+}
+interface RowStyleFunction {
+  (row: Personaje, index: number): React.CSSProperties;
 }
 
+
 export default function TasaDeCambio() {
-  const customStyles = {
+  const customStyles: TableStyles = {
     rows: {
-      style: {
-        backgroundColor: "#f0f0f0", // Color de fondo de las filas
+      style: (row: Personaje, index: number) => {
+        const rowStyle: RowStyleFunction = (row: Personaje, index: number) => {
+          return {
+            backgroundColor: index % 2 === 0 ? "#ffffff" : "#f0f0f0",
+          };
+        };
+        return rowStyle(row, index);
       },
     },
     headCells: {
@@ -32,50 +44,72 @@ export default function TasaDeCambio() {
   const columns = [
     {
       name: "Mon. Nacional",
-      selector: (row: Personaje) => row.nombre,
+      selector: (row: Personaje) => row.moneda_nacional,
       sortable: true,
     },
     {
       name: "Mon. Internacional",
-      selector: (row: Personaje) => row.apellido,
+      selector: (row: Personaje) => row.moneda_extranjera,
       sortable: true,
     },
     {
       name: "Cambio",
-      selector: (row: Personaje) => row.edad,
+      selector: (row: Personaje) => row.cambio,
+      sortable: true,
+    },
+    {
+      name: "Tasa de cambio",
+      selector: (row: Personaje) => row.tasa_de_cambio,
+      sortable: true,
+    },
+    {
+      name: "Fecha",
+      selector: (row: Personaje) => row.fecha,
       sortable: true,
     },
   ];
   const data = [
     {
-      nombre: "Debora",
-      apellido: "Mozart",
-      edad: 43,
+      moneda_nacional: "Debora",
+      moneda_extranjera: "Mozart",
+      cambio: 43,
+      tasa_de_cambio: 2.5,
+      fecha: '20/02/2025'
     },
     {
-      nombre: "Manuelle",
-      apellido: "Rojas",
-      edad: 28,
+      moneda_nacional: "Manuelle",
+      moneda_extranjera: "Rojas",
+      cambio: 28,
+      tasa_de_cambio: 2.5,
+      fecha: '20/02/2025'
     },
     {
-      nombre: "Mairyli",
-      apellido: "Rojas",
-      edad: 18,
+      moneda_nacional: "Mairyli",
+      moneda_extranjera: "Rojas",
+      cambio: 18,
+      tasa_de_cambio: 2.5,
+      fecha: '20/02/2025'
     },
     {
-      nombre: "Junior",
-      apellido: "Duque",
-      edad: 35,
+      moneda_nacional: "Junior",
+      moneda_extranjera: "Duque",
+      cambio: 35,
+      tasa_de_cambio: 2.5,
+      fecha: '20/02/2025'
     },
     {
-      nombre: "Krilim",
-      apellido: "Mozart",
-      edad: 24,
+      moneda_nacional: "Krilim",
+      moneda_extranjera: "Mozart",
+      cambio: 24,
+      tasa_de_cambio: 2.5,
+      fecha: '20/02/2025'
     },
     {
-      nombre: "Goku",
-      apellido: "Rojas",
-      edad: 65,
+      moneda_nacional: "Goku",
+      moneda_extranjera: "Rojas",
+      cambio: 65,
+      tasa_de_cambio: 2.5,
+      fecha: '20/02/2025'
     },
   ];
   const [records, setRecords] = useState<Personaje[]>(data);
@@ -83,11 +117,11 @@ export default function TasaDeCambio() {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value.toLowerCase();
 
-    const filteredRecords = data.filter((record) => {
-      return record.nombre && record.nombre.toLowerCase().includes(inputValue);
-    });
+    // const filteredRecords = data.filter((record) => {
+    //   return record.nombre && record.nombre.toLowerCase().includes(inputValue);
+    // });
 
-    setRecords(filteredRecords);
+    // setRecords(filteredRecords);
   };
   return (
     <>
@@ -102,6 +136,7 @@ export default function TasaDeCambio() {
         fixedHeader
         onSelectedRowsChange={(data) => console.log(data)}
         customStyles={customStyles}
+        className="zebrado"
       />
     </>
   );
