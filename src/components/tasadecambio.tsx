@@ -1,7 +1,6 @@
 "use client";
 import React, { useState } from "react";
 import DataTable from "react-data-table-component";
-import { TableStyles } from 'react-data-table-component';
 
 interface Personaje {
   moneda_nacional: string;
@@ -10,21 +9,12 @@ interface Personaje {
   tasa_de_cambio: number;
   fecha: string;
 }
-interface RowStyleFunction {
-  (row: Personaje, index: number): React.CSSProperties;
-}
-
 
 export default function TasaDeCambio() {
-  const customStyles: TableStyles = {
+  const customStyles = {
     rows: {
-      style: (row: Personaje, index: number) => {
-        const rowStyle: RowStyleFunction = (row: Personaje, index: number) => {
-          return {
-            backgroundColor: index % 2 === 0 ? "#ffffff" : "#f0f0f0",
-          };
-        };
-        return rowStyle(row, index);
+      style: {
+        backgroundColor: "#f0f0f0", // Color de fondo de las filas
       },
     },
     headCells: {
