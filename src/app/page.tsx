@@ -1,11 +1,11 @@
-import NavBar from "src/components/Navbar";
-import ListaPropietarios from "src/components/tasadecambio";
+import ListaEmpresas from "src/components/comerciales";
+import ListaPropietarios from "src/components/propietariosComerciales";
 
 export default function Home() {
   return (
     <>
-      <NavBar/>
       <ListaPropietarios/>
+      <ListaEmpresas/>
     </>
   );
 }
