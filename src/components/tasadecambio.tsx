@@ -1,25 +1,46 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import DataTable from "react-data-table-component";
 
-interface Personaje {
-  moneda_nacional: string;
-  moneda_extranjera: string;
-  cambio: number;
-  tasa_de_cambio: number;
-  fecha: string;
+interface Propietario {
+  id: number;
+  propietario: string;
+  rif: string;
+  direccion: string;
+  telefono: string;
+  email: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
-export default function TasaDeCambio() {
+export default function ListaPropietarios() {
+  const [propietarios, setPropietarios] = useState<Propietario[]>([]);
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+
+    const fetchData = async () => {
+      try {
+        const response = await fetch("https://lv9d0stg-4000.use2.devtunnels.ms/api/propietarios-comerciales/");
+        if (!response.ok) {
+          throw new Error(`Error HTTP: ${response.status}`);
+        }
+        const data = await response.json();
+        setPropietarios(data);
+      } catch (error) {
+        console.error("Error al obtener los datos:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   const customStyles = {
     rows: {
       style: {
-        "&:nth-of-type(odd)": {
-          backgroundColor: "#ffffff",
-        },
-        "&:nth-of-type(even)": {
-          backgroundColor: "#f2f2f2",
-        },
+        "&:nth-of-type(odd)": { backgroundColor: "#ffffff" },
+        "&:nth-of-type(even)": { backgroundColor: "#f2f2f2" },
       },
     },
     headCells: {
@@ -31,99 +52,28 @@ export default function TasaDeCambio() {
         padding: "10px",
       },
     },
-    cells: {
-      style: {
-        padding: "10px",
-        fontSize: "16px",        
-      },
-    },
-    table: {
-      style: {
-        padding: "20px",      
-      },
-    },
+    cells: { style: { padding: "10px", fontSize: "16px" } },
+    table: { style: { padding: "20px", boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)" } },
   };
 
   const columns = [
-    {
-      name: "Mon. Nacional",
-      selector: (row: Personaje) => row.moneda_nacional,
-      sortable: true,
-    },
-    {
-      name: "Mon. Internacional",
-      selector: (row: Personaje) => row.moneda_extranjera,
-      sortable: true,
-    },
-    {
-      name: "Cambio",
-      selector: (row: Personaje) => row.cambio,
-      sortable: true,
-    },
-    {
-      name: "Tasa de cambio",
-      selector: (row: Personaje) => row.tasa_de_cambio,
-      sortable: true,
-    },
-    { name: "Fecha", selector: (row: Personaje) => row.fecha, sortable: true },
+    { name: "Propietario", selector: (row: Propietario) => row.propietario, sortable: true },
+    { name: "RIF", selector: (row: Propietario) => row.rif, sortable: true },
+    { name: "Dirección", selector: (row: Propietario) => row.direccion, sortable: true },
+    { name: "Teléfono", selector: (row: Propietario) => row.telefono, sortable: true },
+    { name: "Email", selector: (row: Propietario) => row.email, sortable: true },
+    { name: "Fecha de Creación", selector: (row: Propietario) => new Date(row.createdAt).toLocaleDateString(), sortable: true },
   ];
-
-  const data: Personaje[] = [
-    {
-      moneda_nacional: "Debora",
-      moneda_extranjera: "Mozart",
-      cambio: 43,
-      tasa_de_cambio: 2.5,
-      fecha: "20/02/2025",
-    },
-    {
-      moneda_nacional: "Manuelle",
-      moneda_extranjera: "Rojas",
-      cambio: 28,
-      tasa_de_cambio: 2.5,
-      fecha: "20/02/2025",
-    },
-    {
-      moneda_nacional: "Mairyli",
-      moneda_extranjera: "Rojas",
-      cambio: 18,
-      tasa_de_cambio: 2.5,
-      fecha: "20/02/2025",
-    },
-    {
-      moneda_nacional: "Junior",
-      moneda_extranjera: "Duque",
-      cambio: 35,
-      tasa_de_cambio: 2.5,
-      fecha: "20/02/2025",
-    },
-    {
-      moneda_nacional: "Krilim",
-      moneda_extranjera: "Mozart",
-      cambio: 24,
-      tasa_de_cambio: 2.5,
-      fecha: "20/02/2025",
-    },
-    {
-      moneda_nacional: "Goku",
-      moneda_extranjera: "Rojas",
-      cambio: 65,
-      tasa_de_cambio: 2.5,
-      fecha: "20/02/2025",
-    },
-  ];
-
-  const [records, setRecords] = useState<Personaje[]>(data);
 
   return (
-    <>
+    <>{isClient && (
       <DataTable
-        title="Tasa de Cambio"
+        title="Lista de Propietarios Comerciales"
         columns={columns}
-        data={records}
+        data={propietarios}
         fixedHeader
         customStyles={customStyles}
       />
-    </>
+    )}</>
   );
 }
