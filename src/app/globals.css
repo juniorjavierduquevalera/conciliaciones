@@ -4,9 +4,17 @@
 
 .input-style{
     border-style: solid;
-    width: 7rem;
-    height: 2rem;
+    border-width: 1px;
+    border-left-width: 5px;
+    border-left-color: blue;
+    border-radius:6px;
+    width: 20rem;
+    height: 4rem;
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2);
 }
-.bg-login{
-    background-image: url("/conciliaciones/public/back-login.svg");
+
+.back{
+    width: 50rem;
+    height: 60rem;
+
 }

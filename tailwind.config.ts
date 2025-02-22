@@ -9,7 +9,9 @@ export default {
   theme: {
     extend: {
       backgroundImage: {
-        'background-login': "url('background-login.svg')"
+        'background-login': "url('/background-login.jpg')",
+        'background-login2': "url('/background-login (2).jpg')",
+        'background-login3': "url('/background-login3.jpg')"
       }
     },
   },
