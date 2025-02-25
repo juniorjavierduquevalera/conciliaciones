@@ -6,7 +6,7 @@ import Link from "next/link";
 export default function NavBarVertical() {
   return (
     <nav className="bg-gray-800 h-screen w-12 place-content-center">
-          <Link href="#">
+          <Link href="/propietarios-comerciales">
               <abbr title="Propietarios comerciales">
                 <BiBuildingHouse
                 className="text-white m-2 w-8 h-8 mt-16 mb-16"
