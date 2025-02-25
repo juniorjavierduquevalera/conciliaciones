@@ -51,7 +51,7 @@ export default function Home() {
       );
 
       const data = await response.json();
-      console.log(data)
+      console.log(data);
       if (!response.ok) {
         toast.error(
           data.message || "Ocorreu um erro inesperado. Tente novamente."
@@ -81,19 +81,22 @@ export default function Home() {
           height={250}
         />
         <div className="self-start">
-          <h1 className="font-bold text-green-400 text-xl mb-9 ">
+          <h1 className="font-bold text-green-500 text-xl mb-9 ">
             Conciliaciones Bancarias
           </h1>
-          <p className="text-base">Una frase motivacional</p>
+          <p className="text-base italic text-justify">
+            "El éxito no llega por azar, sino por la constancia y la valentía de
+            seguir adelante.
+          </p>
         </div>
         <div className="relative w-full h-10 mb-4 mt-20">
           <div
-            className={`absolute w-1/2 h-full bg-green-200 rounded-full transition-all duration-300 ease-in-out`}
+            className={`absolute w-1/2 h-full bg-green-500 rounded-full transition-all duration-300 ease-in-out`}
             style={{ left: showRegisterForm ? "50%" : "0" }}
           ></div>
           <button
             className={`px-6 py-2 rounded-l-full w-1/2 relative z-10 ${
-              !showRegisterForm ? "text-gray-700 font-bold" : "text-gray-500"
+              !showRegisterForm ? "text-white font-bold" : "text-gray-500"
             } transition-colors duration-300`}
             onClick={() => setShowRegisterForm(false)}
           >
@@ -101,7 +104,7 @@ export default function Home() {
           </button>
           <button
             className={`px-6 py-2 rounded-r-full w-1/2 relative z-10 ${
-              showRegisterForm ? "text-gray-700 font-bold" : "text-gray-500"
+              showRegisterForm ? "text-white font-bold" : "text-gray-500"
             } transition-colors duration-300`}
             onClick={() => setShowRegisterForm(true)}
           >
@@ -125,7 +128,7 @@ export default function Home() {
         </div>
         {!showRegisterForm && (
           <form className="transition-all duration-300" onSubmit={handleSubmit}>
-            <div className="flex flex-col gap-y-5">
+            <div className="flex flex-col gap-y-2">
               <div className="mb-4">
                 <label className="block text-gray-700 text-sm font-bold mb-2">
                   <FaUser className="inline-block mr-1" /> Nombre de Usuario

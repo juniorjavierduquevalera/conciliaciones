@@ -15,12 +15,7 @@
     "react": "^19.0.0",
     "react-data-table-component": "^7.6.2",
     "react-dom": "^19.0.0",
-<<<<<<< HEAD
-    "react-icons": "^5.5.0",
-    "react-toastify": "^11.0.3"
-=======
     "react-icons": "^5.5.0"
->>>>>>> 8dd93b7947730e69b258f4b2b916ac86471acde8
   },
   "devDependencies": {
     "@types/js-cookie": "^3.0.6",
