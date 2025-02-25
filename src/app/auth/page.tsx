@@ -2,18 +2,75 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { useAuth } from "src/context/AuthContext";
+import { ToastContainer, toast } from "react-toastify";
 import {
   FaUser,
   FaLock,
-  FaEnvelope,
   FaFacebook,
   FaTwitter,
   FaGoogle,
 } from "react-icons/fa";
 
+interface UserData {
+  name: string;
+  email: string;
+  password: string;
+  role: string;
+}
+
 export default function Home() {
   const [showRegisterForm, setShowRegisterForm] = useState(false);
+  const { user, login } = useAuth();
+  const [userData, setUserData] = useState<UserData>({
+    name: "",
+    email: "",
+    password: "",
+    role: "",
+  });
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    field: keyof UserData
+  ) => {
+    setUserData((prev) => ({ ...prev, [field]: e.target.value }));
+  };
 
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+
+    //const formType = showRegisterForm ? "register" : "login"; // Agora decide corretamente!
+
+    try {
+      const response = await fetch(
+        "https://lv9d0stg-4000.use2.devtunnels.ms/api/users/",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(userData),
+        }
+      );
+
+      const data = await response.json();
+      console.log(data)
+      if (!response.ok) {
+        toast.error(
+          data.message || "Ocorreu um erro inesperado. Tente novamente."
+        );
+        return;
+      }
+
+      login(data.token);
+      toast.success(data.message);
+    } catch (error) {
+      const errorMessage =
+        error instanceof Error ? error.message : "Algo deu errado";
+      toast.error(
+        errorMessage.includes("Unexpected token")
+          ? "Problemas técnicos, tente depois"
+          : errorMessage
+      );
+    }
+  }
   return (
     <div className="w-full h-screen flex items-center justify-center gap-x-12 bg-slate-100">
       <div className="bg-white/50 p-8 flex flex-col items-center rounded shadow-md w-96 height-div">
@@ -24,10 +81,10 @@ export default function Home() {
           height={250}
         />
         <div className="self-start">
-            <h1 className="font-bold text-green-400 text-xl mb-9 ">
-              Conciliaciones Bancarias
-            </h1>
-            <p className="text-base">Una frase motivacional</p>
+          <h1 className="font-bold text-green-400 text-xl mb-9 ">
+            Conciliaciones Bancarias
+          </h1>
+          <p className="text-base">Una frase motivacional</p>
         </div>
         <div className="relative w-full h-10 mb-4 mt-20">
           <div
@@ -55,7 +112,7 @@ export default function Home() {
 
       <div className="bg-white/50 p-8 rounded shadow-md w-96 height-div">
         <div className="flex justify-center mb-4"></div>
-        <div className="flex justify-center space-x-4 mb-4">
+        <div className="flex justify-center space-x-4 mb-14">
           <a href="#" className="text-blue-500 hover:text-blue-700">
             <FaFacebook size={32} />
           </a>
@@ -67,7 +124,7 @@ export default function Home() {
           </a>
         </div>
         {!showRegisterForm && (
-          <form className="transition-all duration-300">
+          <form className="transition-all duration-300" onSubmit={handleSubmit}>
             <div className="flex flex-col gap-y-5">
               <div className="mb-4">
                 <label className="block text-gray-700 text-sm font-bold mb-2">
@@ -75,7 +132,9 @@ export default function Home() {
                 </label>
                 <input
                   type="text"
+                  value={userData.name}
                   className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  onChange={(e) => handleChange(e, "name")}
                   placeholder="Ingresa tu nombre de usuario"
                 />
               </div>
@@ -85,6 +144,8 @@ export default function Home() {
                 </label>
                 <input
                   type="password"
+                  value={userData.password}
+                  onChange={(e) => handleChange(e, "password")}
                   className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   placeholder="Ingresa tu contraseña"
                 />
@@ -96,16 +157,12 @@ export default function Home() {
                   Recordar Contraseña
                 </label>
               </div>
-    
+
               <div className="" style={{ height: "48px" }}></div>
               <div className="flex items-center justify-center">
                 <button
                   className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                   type="submit"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    alert("Iniciar Sesión Clicked (Simulated)");
-                  }}
                 >
                   Entrar
                 </button>
@@ -114,13 +171,18 @@ export default function Home() {
           </form>
         )}
         {showRegisterForm && (
-          <form className="transition-all duration-300 flex flex-col gap-y-5">
+          <form
+            className="transition-all duration-300 flex flex-col gap-y-5"
+            onSubmit={handleSubmit}
+          >
             <div className="mb-4">
               <label className="block text-gray-700 text-sm font-bold mb-2">
                 Nombre de Usuario
               </label>
               <input
                 type="text"
+                value={userData.name}
+                onChange={(e) => handleChange(e, "name")}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 placeholder="Ingresa tu nombre de usuario"
               />
@@ -131,6 +193,8 @@ export default function Home() {
               </label>
               <input
                 type="email"
+                value={userData.email}
+                onChange={(e) => handleChange(e, "email")}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 placeholder="Ingresa tu correo"
               />
@@ -141,6 +205,8 @@ export default function Home() {
               </label>
               <input
                 type="password"
+                value={userData.password}
+                onChange={(e) => handleChange(e, "password")}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 placeholder="Ingresa tu contraseña"
               />
@@ -155,10 +221,6 @@ export default function Home() {
               <button
                 className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                 type="submit"
-                onClick={(e) => {
-                  e.preventDefault();
-                  alert("Iniciar Sesión Clicked (Simulated)");
-                }}
               >
                 Entrar
               </button>
