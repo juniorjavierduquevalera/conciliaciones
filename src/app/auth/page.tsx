@@ -4,6 +4,8 @@ import { useState } from "react";
 import Image from "next/image";
 import { useAuth } from "src/context/AuthContext";
 import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useRouter } from "next/navigation";
 import {
   FaUser,
   FaLock,
@@ -16,17 +18,16 @@ interface UserData {
   name: string;
   email: string;
   password: string;
-  role: string;
 }
 
 export default function Home() {
   const [showRegisterForm, setShowRegisterForm] = useState(false);
   const { user, login } = useAuth();
+  const router = useRouter();
   const [userData, setUserData] = useState<UserData>({
     name: "",
     email: "",
     password: "",
-    role: "",
   });
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement>,
@@ -35,14 +36,15 @@ export default function Home() {
     setUserData((prev) => ({ ...prev, [field]: e.target.value }));
   };
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(
+    e: React.FormEvent<HTMLFormElement>,
+    endpoint: string
+  ) {
     e.preventDefault();
-
-    //const formType = showRegisterForm ? "register" : "login"; // Agora decide corretamente!
 
     try {
       const response = await fetch(
-        "https://lv9d0stg-4000.use2.devtunnels.ms/api/users/",
+        `https://lv9d0stg-4000.use2.devtunnels.ms/api/users/${endpoint}`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -51,7 +53,7 @@ export default function Home() {
       );
 
       const data = await response.json();
-      console.log(data);
+
       if (!response.ok) {
         toast.error(
           data.message || "Ocorreu um erro inesperado. Tente novamente."
@@ -61,6 +63,9 @@ export default function Home() {
 
       login(data.token);
       toast.success(data.message);
+      setTimeout(() => {
+        router.push("/");
+      }, 2000);
     } catch (error) {
       const errorMessage =
         error instanceof Error ? error.message : "Algo deu errado";
@@ -127,23 +132,90 @@ export default function Home() {
           </a>
         </div>
         {!showRegisterForm && (
-          <form className="transition-all duration-300" onSubmit={handleSubmit}>
-            <div className="flex flex-col gap-y-2">
+          <div>
+            <form
+              className="transition-all duration-300"
+              onSubmit={(e) => handleSubmit(e, "login")}
+            >
+              <div className="flex flex-col gap-y-2">
+                
+                <div className="mb-4">
+                  <label className="block text-gray-700 text-sm font-bold mb-2">
+                    <FaUser className="inline-block mr-1" /> Correo
+                  </label>
+                  <input
+                    type="text"
+                    value={userData.email}
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    onChange={(e) => handleChange(e, "email")}
+                    placeholder="Ingresa tu correo"
+                  />
+                </div>
+                <div className="mb-6">
+                  <label className="block text-gray-700 text-sm font-bold mb-2">
+                    <FaLock className="inline-block mr-1" /> Contraseña
+                  </label>
+                  <input
+                    type="password"
+                    value={userData.password}
+                    onChange={(e) => handleChange(e, "password")}
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    placeholder="Ingresa tu contraseña"
+                  />
+                </div>
+                <div className="flex items-center mb-6">
+                  <input type="checkbox" className="mr-2" />
+                  <label className="text-sm text-gray-700">
+                    Recordar Contraseña
+                  </label>
+                </div>
+                <div className="" style={{ height: "48px" }}></div>
+                <div className="flex items-center justify-center">
+                  <button
+                    className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                    type="submit"
+                  >
+                    Entrar
+                  </button>
+                </div>
+              </div>
+            </form>
+            <ToastContainer />
+          </div>
+        )}
+        {showRegisterForm && (
+          <div>
+            <form
+              className="transition-all duration-300 flex flex-col gap-y-5"
+              onSubmit={(e) => handleSubmit(e, "")}
+            >
               <div className="mb-4">
                 <label className="block text-gray-700 text-sm font-bold mb-2">
-                  <FaUser className="inline-block mr-1" /> Nombre de Usuario
+                  Nombre de Usuario
                 </label>
                 <input
                   type="text"
                   value={userData.name}
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   onChange={(e) => handleChange(e, "name")}
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   placeholder="Ingresa tu nombre de usuario"
                 />
               </div>
-              <div className="mb-6">
+              <div className="mb-4">
                 <label className="block text-gray-700 text-sm font-bold mb-2">
-                  <FaLock className="inline-block mr-1" /> Contraseña
+                  Correo
+                </label>
+                <input
+                  type="email"
+                  value={userData.email}
+                  onChange={(e) => handleChange(e, "email")}
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  placeholder="Ingresa tu correo"
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block text-gray-700 text-sm font-bold mb-2">
+                  Contraseña
                 </label>
                 <input
                   type="password"
@@ -153,15 +225,12 @@ export default function Home() {
                   placeholder="Ingresa tu contraseña"
                 />
               </div>
-
-              <div className="flex items-center mb-6">
+              <div className="flex items-center ">
                 <input type="checkbox" className="mr-2" />
                 <label className="text-sm text-gray-700">
-                  Recordar Contraseña
+                  Acepto Términos y Condiciones
                 </label>
               </div>
-
-              <div className="" style={{ height: "48px" }}></div>
               <div className="flex items-center justify-center">
                 <button
                   className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
@@ -170,65 +239,9 @@ export default function Home() {
                   Entrar
                 </button>
               </div>
-            </div>
-          </form>
-        )}
-        {showRegisterForm && (
-          <form
-            className="transition-all duration-300 flex flex-col gap-y-5"
-            onSubmit={handleSubmit}
-          >
-            <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2">
-                Nombre de Usuario
-              </label>
-              <input
-                type="text"
-                value={userData.name}
-                onChange={(e) => handleChange(e, "name")}
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                placeholder="Ingresa tu nombre de usuario"
-              />
-            </div>
-            <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2">
-                Correo
-              </label>
-              <input
-                type="email"
-                value={userData.email}
-                onChange={(e) => handleChange(e, "email")}
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                placeholder="Ingresa tu correo"
-              />
-            </div>
-            <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2">
-                Contraseña
-              </label>
-              <input
-                type="password"
-                value={userData.password}
-                onChange={(e) => handleChange(e, "password")}
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                placeholder="Ingresa tu contraseña"
-              />
-            </div>
-            <div className="flex items-center ">
-              <input type="checkbox" className="mr-2" />
-              <label className="text-sm text-gray-700">
-                Acepto Términos y Condiciones
-              </label>
-            </div>
-            <div className="flex items-center justify-center">
-              <button
-                className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                type="submit"
-              >
-                Entrar
-              </button>
-            </div>
-          </form>
+            </form>
+            <ToastContainer />
+          </div>
         )}
       </div>
     </div>
