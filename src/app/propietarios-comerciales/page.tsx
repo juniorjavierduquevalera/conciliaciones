@@ -2,7 +2,7 @@ import ListaPropietarios from "src/components/propietariosComerciales";
 
 export default function PropietariosComerciales() {
   return (
-    <div>
+    <div className="">
       <ListaPropietarios/>
     </div>
   )
