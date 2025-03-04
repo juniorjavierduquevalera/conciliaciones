@@ -3,8 +3,8 @@ interface InputProps {
   placeholder: string;
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  id?: string;
 }
-
 const Input: React.FC<InputProps> = ({
   type,
   placeholder,
