@@ -1,4 +1,4 @@
-import ListaComerciale from "src/components/comerciales";
+import ListaComerciale from "src/components/ui/organismo/ListaDeComerciales"
 
 export default function page() {
   return (

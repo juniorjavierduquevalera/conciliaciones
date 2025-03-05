@@ -1,6 +1,6 @@
-import ListaPropietarios from "src/components/propietariosComerciales";
+import ListaPropietarios from "src/components/ui/organismo/ListaDePropietariosComerciales";
 
-export default function PropietariosComerciales() {
+export default function page() {
   return (
     <div className="">
       <ListaPropietarios/>
