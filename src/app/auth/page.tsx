@@ -1,5 +1,4 @@
 "use client";
-
 import { useState } from "react";
 import Image from "next/image";
 import { useAuth } from "src/context/AuthContext";
@@ -26,7 +25,7 @@ export default function Home() {
   const router = useRouter();
   const [userData, setUserData] = useState<UserData>({
     name: "",
-    email: "",
+    email: "", 
     password: "",
   });
   const handleChange = (
@@ -138,7 +137,6 @@ export default function Home() {
               onSubmit={(e) => handleSubmit(e, "login")}
             >
               <div className="flex flex-col gap-y-2">
-                
                 <div className="mb-4">
                   <label className="block text-gray-700 text-sm font-bold mb-2">
                     <FaUser className="inline-block mr-1" /> Correo
