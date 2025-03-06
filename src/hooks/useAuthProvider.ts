@@ -11,7 +11,7 @@ interface User {
 interface AuthState {
   user: User | null;
   login: (token: string) => void;
-  logout: () => void;
+  logout: () => void; 
 }
 
 const getUserFromToken = (): User | null => {
