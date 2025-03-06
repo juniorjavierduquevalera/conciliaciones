@@ -13,19 +13,19 @@ export default function NavBarVertical() {
             className="text-white m-2 w-8 h-8 mt-16 mb-16"/>
             </abbr>
           </Link>
-          <Link href="/propietarios-comerciales">
+          <Link href="/pages//propietarios-comerciales">
               <abbr title="Propietarios comerciales">
                 <BiBuildingHouse
                 className="text-white m-2 w-8 h-8 mt-16 mb-16"
                 />
               </abbr>
           </Link>
-          <Link href="/tasa-de-cambios">
+          <Link href="/pages/tasa-de-cambios">
           <abbr title="Tasa de cambios">
               <MdOutlineCurrencyExchange className="text-white m-2 w-8 h-8 mt-16 mb-16"/>
           </abbr>
           </Link>
-          <Link href="/comerciales">
+          <Link href="/pages/comerciales">
           <abbr title="Comerciales">
               <LuMapPinHouse
               className="text-white m-2 mt- w-8 h-8 mt-16 mb-16"
