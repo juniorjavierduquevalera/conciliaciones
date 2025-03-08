@@ -10,10 +10,22 @@ interface FormInputProps {
   id: string;
 }
 
-const FormInput: React.FC<FormInputProps> = ({ type, placeholder, label, value, onChange, id }) => {
+const FormInput: React.FC<FormInputProps> = ({
+  type,
+  placeholder,
+  label,
+  value,
+  onChange,
+  id,
+}) => {
   return (
     <div className="mb-4">
-      <label htmlFor={id} className="block text-gray-700 text-sm font-bold mb-2">{label}</label>
+      <label
+        htmlFor={id}
+        className="block text-gray-700 text-sm font-bold mb-2"
+      >
+        {label}
+      </label>
       <Input
         type={type}
         placeholder={placeholder}
