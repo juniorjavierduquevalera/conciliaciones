@@ -1,7 +1,7 @@
 import { Comerciales } from "src/interfaces/interfaceComerciales";
 
 export const columnsComerciales = [
-  {
+  { 
     name: "Codigo",
     selector: (row: Comerciales) => row.codigo,
     sortable: true,

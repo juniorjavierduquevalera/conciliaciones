@@ -14,13 +14,10 @@ export const customStylesTable = {
       padding: "10px",
     },
   },
-  cells: { style: 
-    { padding: "10px", 
-      fontSize: "16px" }
-   },
+  cells: { style: { padding: "10px", fontSize: "16px" } },
   table: {
-    style: 
-    { padding: "0px", 
+    style: {
+      padding: "0px",
       boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)",
       width: "96.65vw",
     },
