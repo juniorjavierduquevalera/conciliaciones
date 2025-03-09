@@ -39,6 +39,11 @@ export default function NavBarVertical() {
           <VscReferences className="text-white m-2 mt- w-8 h-8 mt-16 mb-16" />
         </abbr>
       </Link>
+      <Link href="/pages/conciliaciones-bancarias">
+        <abbr title="Conciliaciones Bancarias">
+          <VscReferences className="text-white m-2 mt- w-8 h-8 mt-16 mb-16" />
+        </abbr>
+      </Link>
     </nav>
   );
 }
