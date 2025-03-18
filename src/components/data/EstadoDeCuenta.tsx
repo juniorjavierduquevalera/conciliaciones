@@ -45,6 +45,7 @@ export const columnsEstadoDeCuenta = [
     name: "Fecha de Creación",
     selector: (row: interfaceEstadoDeCuenta) => row.fecha_creacion,
     sortable: true,
+    
   },
   {
     name: "Fecha de Actualización",
