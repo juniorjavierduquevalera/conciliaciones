@@ -3,6 +3,7 @@ import authReducer from "./features/auth/authSlice";
 import tasaDeCambioReducer from "./features/tables/tasaDeCambioSlice";
 import comercialReducer from "./features/tables/comercialSlice"; 
 import propietarioComercialReducer from "./features/tables/propietarioComercialSlice";
+import codigoTransaccionalReducer from "./features/tables/codigoTransaccionalSlice";
 
 export const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
     tasaDeCambio: tasaDeCambioReducer,
     comercial: comercialReducer, 
     propietarioComercial: propietarioComercialReducer,
+    codigoTransaccional: codigoTransaccionalReducer,
   },
 });
 
