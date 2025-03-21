@@ -5,6 +5,9 @@ import comercialReducer from "./features/tables/comercialSlice";
 import propietarioComercialReducer from "./features/tables/propietarioComercialSlice";
 import codigoTransaccionalReducer from "./features/tables/codigoTransaccionalSlice";
 import estadoDeCuentaReducer from "./features/tables/estadoDeCuentaSlice";
+import cargosBancariosReducer from "./features/tables/cargosBancariosSlice";
+import abonosBancariosReducer from "./features/tables/abonosBancariosSlice";
+import comisionesBancariasReducer from "./features/tables/comisionesBancariasSlice";
 
 export const store = configureStore({
   reducer: {
@@ -14,6 +17,9 @@ export const store = configureStore({
     propietarioComercial: propietarioComercialReducer,
     codigoTransaccional: codigoTransaccionalReducer,
     estadoDeCuenta: estadoDeCuentaReducer,
+    cargosBancarios: cargosBancariosReducer,
+    abonosBancarios: abonosBancariosReducer,
+    comisionesBancarias: comisionesBancariasReducer,
   },
 });
 
