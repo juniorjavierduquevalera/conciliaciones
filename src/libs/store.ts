@@ -8,6 +8,8 @@ import estadoDeCuentaReducer from "./features/tables/estadoDeCuentaSlice";
 import cargosBancariosReducer from "./features/tables/cargosBancariosSlice";
 import abonosBancariosReducer from "./features/tables/abonosBancariosSlice";
 import comisionesBancariasReducer from "./features/tables/comisionesBancariasSlice";
+import clientesReducer from "./features/tables/clienteSlice";
+import conciliacionReducer from './features/tables/conciliacionBancariaSlice';
 
 export const store = configureStore({
   reducer: {
@@ -20,6 +22,8 @@ export const store = configureStore({
     cargosBancarios: cargosBancariosReducer,
     abonosBancarios: abonosBancariosReducer,
     comisionesBancarias: comisionesBancariasReducer,
+    clientes: clientesReducer,
+    conciliacion: conciliacionReducer,
   },
 });
 
