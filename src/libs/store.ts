@@ -11,6 +11,7 @@ import comisionesBancariasReducer from "./features/tables/comisionesBancariasSli
 import clientesReducer from "./features/tables/clienteSlice";
 import conciliacionReducer from './features/tables/conciliacionBancariaSlice';
 import recibosReducer from './features/tables/recibosSlice';
+import pagosReducer from "./features/tables/pagosSlice";
 
 export const store = configureStore({
   reducer: {
@@ -26,6 +27,7 @@ export const store = configureStore({
     clientes: clientesReducer,
     conciliacion: conciliacionReducer,
     recibos: recibosReducer,
+    pagos: pagosReducer,  
   },
 });
 
