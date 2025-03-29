@@ -1,11 +1,25 @@
-"use client";
-import React from "react";
-import { TasasDeCambiosTable } from "../moleculas/TasasDeCambiosTable";
+'use client';
+import React, { useEffect } from 'react';
+import { useTasaDeCambioStore } from '../../../hooks/useTasaDeCambioStore';
+import TasasDataTable from '../moleculas/TasasDeCambioDataTable';
 
-export default function ListaDeCambios() {
+const TasasList = () => {
+  const { tasas, isLoading, fetchTasas } = useTasaDeCambioStore();
+
+  useEffect(() => {
+    fetchTasas();
+  }, []);
+
+  if (isLoading) {
+    return <pre>Cargando...</pre>;
+  }
+  
   return (
-    <>
-      <TasasDeCambiosTable />
-    </>
+    <div>
+      <h1>Tasas de Cambio</h1>
+      <TasasDataTable tasas={tasas} />
+    </div>
   );
-}
+};
+
+export default TasasList;

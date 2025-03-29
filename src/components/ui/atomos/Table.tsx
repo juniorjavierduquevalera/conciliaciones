@@ -1,14 +1,14 @@
 import React from "react";
-import DataTable from "react-data-table-component";
+import DataTable, {TableColumn }from "react-data-table-component";
 
 interface TableProps<T> {
   title: string;
-  columns: any; 
-  data: T;
-  customStyles: any;
+  columns: TableColumn<T>[]; 
+  data: T[];
+  customStyles: any; 
 }
 
-const Table: React.FC<TableProps<any>> = ({ title, columns, data, customStyles }) => {
+const Table = <T extends {}>({title, columns, data, customStyles }: TableProps<T>) => {
   return (
     <DataTable
       title={title}
