@@ -51,8 +51,3 @@ const Form: React.FC = () => {
 };
 
 export default Form;
-// Importado o hook useInputValues.
-// Utilizado o hook para obter values e handleChange.
-// Passadas as props value, onChange e id corretas para cada FormInput.
-// Os ids dos inputs foram definidos para coincidir com as chaves do objeto values.
-// O handleSubmit agora exibe os valores do formulário no console.
