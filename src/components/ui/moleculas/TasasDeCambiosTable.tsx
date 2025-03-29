@@ -18,7 +18,7 @@ export const TasasDeCambiosTable: React.FC = () => {
     <Table
       title="Lista de Cambios"
       columns={columnsTasasDeCambios}
-      data={tasasDeCambios} 
+      data={tasasDeCambios}
       customStyles={customStylesTable}
     />
   );
