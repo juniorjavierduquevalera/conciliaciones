@@ -1,4 +1,4 @@
-import Form from "src/components/ui/organismo/Form";
+import Form from "src/components/ui/organismo/FormRegister";
 
 
 export default function Home() {
