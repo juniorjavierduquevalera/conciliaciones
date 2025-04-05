@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useEstadoDeCuentaStore } from "../../../hooks/useEstadoDeCuentaStore";
 import DataTable, {TableColumn } from "react-data-table-component";
 import { interfaceEstadoDeCuenta } from "src/interfaces/interfaceEstadoDeCuenta";
+import { customStylesTable } from "src/app/styles/stylesTable";
 
 const EstadoDeCuentaPage = () => {
   const { estados, isLoading, fetchEstados } = useEstadoDeCuentaStore();
@@ -59,6 +60,7 @@ const EstadoDeCuentaPage = () => {
         columns={columns}
         data={flattenedEstadoDeCuenta}
         pagination
+        customStyles={customStylesTable}
         />
       
     </div>
