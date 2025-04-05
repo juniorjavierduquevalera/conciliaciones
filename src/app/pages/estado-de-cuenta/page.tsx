@@ -1,7 +1,7 @@
 'use client'
 import { useEffect } from "react";
 import { useEstadoDeCuentaStore } from "../../../hooks/useEstadoDeCuentaStore";
-import DataTable, {TableColumn } from "react-data-table-component";
+import DataTable, { TableColumn } from "react-data-table-component";
 import { interfaceEstadoDeCuenta } from "src/interfaces/interfaceEstadoDeCuenta";
 import { customStylesTable } from "src/app/styles/stylesTable";
 
