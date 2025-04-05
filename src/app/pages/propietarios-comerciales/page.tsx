@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import DataTable, { TableColumn } from 'react-data-table-component';
 import { usePropietarioComercialStore } from '../../../hooks/usePropietarioComercialStore';
 import { Propietario } from 'src/interfaces/interfacePropietarios';
+import { customStylesTable } from 'src/app/styles/stylesTable';
 
 const PropietariosComercialesPage: React.FC = () => {
   const { propietarios, isLoading, fetchPropietarios } = usePropietarioComercialStore();
@@ -46,9 +47,9 @@ const PropietariosComercialesPage: React.FC = () => {
         columns={columns}
         data={flattenedPropietarios}
         pagination
+        customStyles={customStylesTable}
       />
     </div>
   );
 };
-
 export default PropietariosComercialesPage;

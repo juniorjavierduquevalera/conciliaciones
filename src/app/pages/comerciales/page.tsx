@@ -1,13 +1,3 @@
-// import ListaComerciale from "src/components/ui/organismo/ListaDeComerciales"
-
-// export default function page() {
-//   return (
-//     <div>
-//       <ListaComerciale/>
-//     </div>
-//   )
-// }
-
 'use client'
 import { useEffect } from "react";
 import { useComercialStore } from "../../../hooks/useComercialStore";
