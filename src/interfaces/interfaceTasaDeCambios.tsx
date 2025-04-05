@@ -3,4 +3,5 @@ export interface TasasDeCambios {
     moneda_nacional: string;
     moneda_extranjera: string;
     cambio: number;
+    fecha: string;
   }

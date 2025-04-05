@@ -4,6 +4,7 @@ import DataTable, { TableColumn } from 'react-data-table-component';
 import { usePropietarioComercialStore } from '../../../hooks/usePropietarioComercialStore';
 import { Propietario } from 'src/interfaces/interfacePropietarios';
 import { customStylesTable } from 'src/app/styles/stylesTable';
+
 const PropietariosComercialesPage: React.FC = () => {
   const { propietarios, isLoading, fetchPropietarios } = usePropietarioComercialStore();
 
@@ -36,6 +37,7 @@ const PropietariosComercialesPage: React.FC = () => {
   if (isLoading) {
     return <pre>Cargando...</pre>;
   }
+  
   const flattenedPropietarios = propietarios.flat();
 
   return (
