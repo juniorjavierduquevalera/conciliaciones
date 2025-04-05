@@ -1,35 +1,54 @@
-// import ListaPropietarios from "src/components/ui/organismo/ListaDePropietariosComerciales";
-
-// export default function page() {
-//   return (
-//     <div className="">
-//       <ListaPropietarios/>
-//     </div>
-//   )
-// }
-
 'use client'
-import { useEffect } from "react";
-import { usePropietarioComercialStore } from "../../../hooks/usePropietarioComercialStore";
+import React, { useEffect } from 'react';
+import DataTable, { TableColumn } from 'react-data-table-component';
+import { usePropietarioComercialStore } from '../../../hooks/usePropietarioComercialStore';
+import { Propietario } from 'src/interfaces/interfacePropietarios';
 
-const PropietariosComercialesPage = () => {
+const PropietariosComercialesPage: React.FC = () => {
   const { propietarios, isLoading, fetchPropietarios } = usePropietarioComercialStore();
 
   useEffect(() => {
     fetchPropietarios();
   }, []);
 
+  const columns: TableColumn<Propietario>[] = [
+    { 
+      name: 'ID', selector: (row) => row.id, sortable: true 
+    },
+    { 
+      name: 'Propietario', selector: (row) => row.propietario, sortable: true 
+    },
+    { 
+      name: 'Rif', selector: (row) => row.rif, sortable: true 
+    },
+    { 
+      name: 'Direccion', selector: (row) => row.direccion, sortable: true 
+    },
+    {
+      name: 'Telefono', selector: (row) => row.telefono, sortable: true
+    },
+    {
+      name: 'email', selector: (row) => row.email, sortable: true
+    },
+
+  ];
+
   if (isLoading) {
     return <pre>Cargando...</pre>;
   }
+  
+  const flattenedPropietarios = propietarios.flat();
 
   return (
     <div>
       <h1>Lista de Propietarios Comerciales</h1>
-      <pre>{JSON.stringify(propietarios, null, 2)}</pre>
+      <DataTable<Propietario>
+        columns={columns}
+        data={flattenedPropietarios}
+        pagination
+      />
     </div>
   );
 };
 
 export default PropietariosComercialesPage;
-
