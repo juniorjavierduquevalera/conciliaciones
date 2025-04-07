@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect } from 'react';
+/*import React, { useEffect } from 'react';
 import DataTable, { TableColumn } from 'react-data-table-component';
 import { usePropietarioComercialStore } from '../../../hooks/usePropietarioComercialStore';
 import { Propietario } from 'src/interfaces/interfacePropietarios';
@@ -52,4 +52,16 @@ const PropietariosComercialesPage: React.FC = () => {
     </div>
   );
 };
+export default PropietariosComercialesPage;*/
+import React from 'react'
+import PropietariosTable from 'src/components/ui/organismo/PropietariosTable'
+
+const PropietariosComercialesPage: React.FC = () => {
+  return (
+    <div>
+      <h1>Lista de Propietarios</h1>
+      <PropietariosTable/>
+    </div>
+  )
+}
 export default PropietariosComercialesPage;
