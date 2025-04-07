@@ -21,7 +21,7 @@ export const useClientesStore = () => {
     currentPage,
     pageSize,
     errorMessage,
-  } = useSelector((state: any) => state.cliente); 
+  } = useSelector((state: any) => state.clientes); 
   const dispatch = useDispatch();
 
   const fetchClientes = async (page = 1) => {
