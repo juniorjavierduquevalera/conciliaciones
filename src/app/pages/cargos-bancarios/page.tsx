@@ -1,22 +1,13 @@
 'use client'
-import { useEffect } from "react";
-import { useCargosBancariosStore } from "../../../hooks/useCargosBancariosStore";
+import React from 'react'
+import CargosBancariosTable from 'src/components/ui/organismo/CargosBancariosTable'
 
-const CargosBancariosPage = () => {
-  const { cargos, isLoading, fetchCargos } = useCargosBancariosStore();
-
-  useEffect(() => {
-    fetchCargos();
-  }, []);
-
-  if (isLoading) return <pre>Cargando...</pre>;
-
+const CargosBancariosPage: React.FC = () => {
   return (
     <div>
-      <h1>Cargos Bancarios</h1>
-      <pre>{JSON.stringify(cargos, null, 2)}</pre>
+      <CargosBancariosTable/>
     </div>
-  );
-};
+  )
+}
 
 export default CargosBancariosPage;
