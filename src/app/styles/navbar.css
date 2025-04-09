@@ -1,0 +1,104 @@
+/* Navbar.css */
+.container {
+    display: flex;
+    align-items: center; /* Alinea el navbar y las sub-opciones en la parte superior */
+  }
+  
+  .navbar {
+    display: flex;
+    flex-direction: column;
+    background-color: #3b4252; /* Un tono de gris más oscuro y elegante */
+    padding: 8px; /* Un poco menos de padding */
+    border-radius: 0px 10px 10px 0px; /* Bordes redondeados suaves */
+    transition: width 0.2s ease-in-out; /* Transición más rápida */
+    height: 100vh;
+    align-items: center; /* Centra horizontalmente los ítems */
+    justify-content: flex-start; /* Alinea los ítems al inicio verticalmente por defecto */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Sutil sombra */
+    width: 60px; /* Ancho inicial del navbar */
+  }
+  
+  /* Centrar verticalmente los botones cuando el navbar NO está expandido */
+  .navbar:not(.expanded) {
+    justify-content: center; /* Centra verticalmente los ítems */
+  }
+  
+  .navbar.expanded {
+    width: 140px; /* Ancho del navbar cuando está expandido */
+    justify-content: center; /* Volver a la alineación inicial cuando se expande */
+  }
+  
+  .main-button {
+    background-color: #3b4252;
+    color: #eceff4; /* Un color de texto más claro y moderno */
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    margin-bottom: 5px; /* Espacio entre botones */
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    border-radius: 6px; /* Bordes redondeados para los botones principales */
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .main-button:hover {
+    background-color: #434c5e; /* Un ligero cambio de color al pasar el ratón */
+  }
+  
+  .main-button:focus {
+    outline: none; /* Elimina el outline predeterminado */
+    box-shadow: 0 0 0 2px #88c0d0; /* Un sutil halo al enfocar */
+  }
+  
+  .main-icon {
+    font-size: 1.2em; /* Un tamaño de icono ligeramente más pequeño */
+    margin-right: 10px;
+    color: #88c0d0; /* Un color акцентный más atractivo */
+  }
+  
+  .main-label {
+    margin-left: 8px;
+    font-weight: medium; /* Un peso de fuente ligeramente más grueso */
+  }
+  
+  .sub-options-container {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    padding: 8px;
+    background-color: #434c5e; /* Un tono ligeramente más claro para el fondo */
+    border-radius: 8px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  .sub-button {
+    background-color: transparent; /* Fondo transparente para los botones secundarios */
+    color: #d8dee9;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    margin-bottom: 3px;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    border-radius: 4px;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .sub-button:hover {
+    background-color: #4c566a;
+  }
+  
+  .sub-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #a3be8c;
+  }
+  
+  .sub-icon {
+    font-size: 0.9em;
+    margin-right: 8px;
+    color: #a3be8c; /* Otro color para las sub-opciones */
+  }
