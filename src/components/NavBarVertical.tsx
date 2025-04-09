@@ -1,4 +1,3 @@
-// Navbar.tsx
 'use client';
 import React, { useState } from 'react';
 import {
@@ -10,6 +9,7 @@ import {
   FaPenNib,
 } from 'react-icons/fa';
 import '../app/styles/navbar.css'; 
+import CardList from './ui/moleculas/cardList';
 
 interface NavbarProps {}
 
@@ -38,11 +38,11 @@ const Navbar: React.FC<NavbarProps> = () => {
           {isExpanded && <span className="main-label">Inicio</span>}
         </button>
         <button
-          className={`main-button ${activeButton === 'Opciones' ? 'active' : ''}`}
-          onClick={() => handleButtonClick('Opciones')}
+          className={`main-button ${activeButton === 'Tablas' ? 'active' : ''}`}
+          onClick={() => handleButtonClick('Tablas')}
         >
           <FaCog className="main-icon" />
-          {isExpanded && <span className="main-label">Opciones</span>}
+          {isExpanded && <span className="main-label">Tablas</span>}
         </button>
         <button
           className={`main-button ${activeButton === 'Salir' ? 'active' : ''}`}
@@ -53,20 +53,9 @@ const Navbar: React.FC<NavbarProps> = () => {
         </button>
       </div>
 
-      {isExpanded && activeButton === 'Opciones' && (
+      {isExpanded && activeButton === 'Tablas' && (
         <div className="sub-options-container">
-          <button className="sub-button">
-            <FaUserCog className="sub-icon" />
-            Configurar
-          </button>
-          <button className="sub-button">
-            <FaUser className="sub-icon" />
-            Perfil
-          </button>
-          <button className="sub-button">
-            <FaPenNib className="sub-icon" />
-            Apodo
-          </button>
+          <CardList/>
         </div>
       )}
     </div>
