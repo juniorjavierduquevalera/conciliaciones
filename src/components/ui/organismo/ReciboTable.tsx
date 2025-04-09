@@ -76,16 +76,17 @@ const ReciboTable: React.FC = () => {
     },
   ];
 
-  if(isLoading){
+  if (isLoading) {
     return <LoadingIndicator />;
   }
+  const flattenedRecibos = recibos.flat();
 
   return (
     <DataTableComponent<Recibo>
-        title="Lista de Recibos"
-        columns={columns}
-        data={recibos}
-        />
-  )
+      title="Lista de Recibos"
+      columns={columns}
+      data={flattenedRecibos}
+    />
+  );
 };
 export default ReciboTable;
