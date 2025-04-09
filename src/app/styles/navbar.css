@@ -1,7 +1,7 @@
 /* Navbar.css */
 .container {
     display: flex;
-    align-items: center; /* Alinea el navbar y las sub-opciones en la parte superior */
+    align-items: center; /* Alinea el navbar y las sub-opciones en la parte superior */    
   }
   
   .navbar {
@@ -72,6 +72,7 @@
     background-color: #434c5e; /* Un tono ligeramente más claro para el fondo */
     border-radius: 8px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+
   }
   
   .sub-button {

@@ -19,7 +19,7 @@ export const customStylesTable = {
     style: {
       padding: "0px",
       boxShadow: "0px 4px 8px rgb(255, 4, 4)",
-      width: "96.65vw",
+      width: "96.1vw",
     },
   },
 };

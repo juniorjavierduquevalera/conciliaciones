@@ -30,11 +30,11 @@ export default function RootLayout({
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
-          <main className="flex">
-            <div>
+          <main className="flex relative">
+            <div className="absolute z-40">
               <NavBarVertical />
             </div>
-            <div className="mx-auto mt-12">{children}</div>
+            <div className="mx-auto mt-12 ml-16">{children}</div>
           </main>
         </body>
       </StoreProvider>
