@@ -1,49 +1,76 @@
-import React from "react";
-import { IoMdHome } from "react-icons/io";
-import { BiBuildingHouse } from "react-icons/bi";
-import { LuMapPinHouse } from "react-icons/lu";
-import { MdOutlineCurrencyExchange } from "react-icons/md";
-import { MdAccountBalanceWallet } from "react-icons/md";
-import { VscReferences } from "react-icons/vsc";
-import Link from "next/link";
-export default function NavBarVertical() {
+// Navbar.tsx
+'use client';
+import React, { useState } from 'react';
+import {
+  FaHome,
+  FaCog,
+  FaSignOutAlt,
+  FaUserCog,
+  FaUser,
+  FaPenNib,
+} from 'react-icons/fa';
+import '../app/styles/navbar.css'; 
+
+interface NavbarProps {}
+
+const Navbar: React.FC<NavbarProps> = () => {
+  const [isExpanded, setIsExpanded] = useState<boolean>(false);
+  const [activeButton, setActiveButton] = useState<string | null>(null);
+
+  const handleButtonClick = (buttonName: string) => {
+    if (activeButton === buttonName) {
+      setIsExpanded(false);
+      setActiveButton(null);
+    } else {
+      setIsExpanded(true);
+      setActiveButton(buttonName);
+    }
+  };
+
   return (
-    <nav className="bg-gray-800 h-screen w-12 place-content-center">
-      <Link href="/">
-        <abbr title="Inicio">
-          <IoMdHome className="text-white m-2 w-8 h-8 mt-16 mb-16" />
-        </abbr>
-      </Link>
-      <Link href="/pages//propietarios-comerciales">
-        <abbr title="Propietarios comerciales">
-          <BiBuildingHouse className="text-white m-2 w-8 h-8 mt-16 mb-16" />
-        </abbr>
-      </Link>
-      <Link href="/pages/tasa-de-cambios">
-        <abbr title="Tasa de cambios">
-          <MdOutlineCurrencyExchange className="text-white m-2 w-8 h-8 mt-16 mb-16" />
-        </abbr>
-      </Link>
-      <Link href="/pages/comerciales">
-        <abbr title="Comerciales">
-          <LuMapPinHouse className="text-white m-2 mt- w-8 h-8 mt-16 mb-16" />
-        </abbr>
-      </Link>
-      <Link href="/pages/estado-de-cuenta">
-        <abbr title="Estado de Cuenta">
-          <MdAccountBalanceWallet className="text-white m-2 mt- w-8 h-8 mt-16 mb-16" />
-        </abbr>
-      </Link>
-      <Link href="/pages/codigos-transaccionales">
-        <abbr title="Codigos Transaccionales">
-          <VscReferences className="text-white m-2 mt- w-8 h-8 mt-16 mb-16" />
-        </abbr>
-      </Link>
-      <Link href="/pages/conciliaciones-bancarias">
-        <abbr title="Conciliaciones Bancarias">
-          <VscReferences className="text-white m-2 mt- w-8 h-8 mt-16 mb-16" />
-        </abbr>
-      </Link>
-    </nav>
+    <div className="container">
+      <div className={`navbar ${isExpanded ? 'expanded' : ''}`}>
+        <button
+          className={`main-button ${activeButton === 'Inicio' ? 'active' : ''}`}
+          onClick={() => handleButtonClick('Inicio')}
+        >
+          <FaHome className="main-icon" />
+          {isExpanded && <span className="main-label">Inicio</span>}
+        </button>
+        <button
+          className={`main-button ${activeButton === 'Opciones' ? 'active' : ''}`}
+          onClick={() => handleButtonClick('Opciones')}
+        >
+          <FaCog className="main-icon" />
+          {isExpanded && <span className="main-label">Opciones</span>}
+        </button>
+        <button
+          className={`main-button ${activeButton === 'Salir' ? 'active' : ''}`}
+          onClick={() => handleButtonClick('Salir')}
+        >
+          <FaSignOutAlt className="main-icon" />
+          {isExpanded && <span className="main-label">Salir</span>}
+        </button>
+      </div>
+
+      {isExpanded && activeButton === 'Opciones' && (
+        <div className="sub-options-container">
+          <button className="sub-button">
+            <FaUserCog className="sub-icon" />
+            Configurar
+          </button>
+          <button className="sub-button">
+            <FaUser className="sub-icon" />
+            Perfil
+          </button>
+          <button className="sub-button">
+            <FaPenNib className="sub-icon" />
+            Apodo
+          </button>
+        </div>
+      )}
+    </div>
   );
-}
+};
+
+export default Navbar;
