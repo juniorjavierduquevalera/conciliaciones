@@ -1,5 +1,5 @@
-'use client';
-import React, { useState } from 'react';
+"use client";
+import React, { useState } from "react";
 import {
   FaHome,
   FaCog,
@@ -7,9 +7,9 @@ import {
   FaUserCog,
   FaUser,
   FaPenNib,
-} from 'react-icons/fa';
-import '../app/styles/navbar.css'; 
-import CardList from './ui/moleculas/cardList';
+} from "react-icons/fa";
+import "../app/styles/navbar.css";
+import CardList from "./ui/moleculas/cardList";
 
 interface NavbarProps {}
 
@@ -29,33 +29,33 @@ const Navbar: React.FC<NavbarProps> = () => {
 
   return (
     <div className="container">
-      <div className={`navbar ${isExpanded ? 'expanded' : ''}`}>
+      <div className={`navbar ${isExpanded ? "expanded" : ""}`}>
         <button
-          className={`main-button ${activeButton === 'Inicio' ? 'active' : ''}`}
-          onClick={() => handleButtonClick('Inicio')}
+          className={`main-button ${activeButton === "Inicio" ? "active" : ""}`}
+          onClick={() => handleButtonClick("Inicio")}
         >
           <FaHome className="main-icon" />
           {isExpanded && <span className="main-label">Inicio</span>}
         </button>
         <button
-          className={`main-button ${activeButton === 'Tablas' ? 'active' : ''}`}
-          onClick={() => handleButtonClick('Tablas')}
+          className={`main-button ${activeButton === "Tablas" ? "active" : ""}`}
+          onClick={() => handleButtonClick("Tablas")}
         >
           <FaCog className="main-icon" />
           {isExpanded && <span className="main-label">Tablas</span>}
         </button>
         <button
-          className={`main-button ${activeButton === 'Salir' ? 'active' : ''}`}
-          onClick={() => handleButtonClick('Salir')}
+          className={`main-button ${activeButton === "Salir" ? "active" : ""}`}
+          onClick={() => handleButtonClick("Salir")}
         >
           <FaSignOutAlt className="main-icon" />
           {isExpanded && <span className="main-label">Salir</span>}
         </button>
       </div>
 
-      {isExpanded && activeButton === 'Tablas' && (
+      {isExpanded && activeButton === "Tablas" && (
         <div className="sub-options-container">
-          <CardList/>
+          <CardList />
         </div>
       )}
     </div>
