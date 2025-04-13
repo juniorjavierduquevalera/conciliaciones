@@ -36,6 +36,7 @@ const TasaDeCambioPage: React.FC =  () => {
     return <pre>Cargando...</pre>;
   }
   console.log("Valor de tasas antes de DataTable:", tasas); // <--- AGREGAR ESTO
+
   return (
     <div>
       <h1>Tasas de Cambio</h1>

@@ -10,7 +10,7 @@ export const useRecibosStore = () => {
   const {
     recibos,
     isLoading,
-    totalItems,
+    totalItems,  
     totalPages,
     currentPage,
     pageSize,

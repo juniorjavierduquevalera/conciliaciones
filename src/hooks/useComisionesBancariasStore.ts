@@ -7,26 +7,34 @@ import {
 } from "../libs/features/tables/comisionesBancariasSlice";
 
 export const useComisionesBancariasStore = () => {
-  const { comisiones, isLoading } = useSelector((state: any) => state.comisionesBancarias);
+  const {
+    comisiones,
+    isLoading,
+    totalItems,
+    totalPages,
+    currentPage,
+    pageSize
+  } = useSelector((state: any) => state.comisionesBancarias);
   const dispatch = useDispatch();
 
-  const fetchComisiones = async () => {
+  const fetchComisiones = async (page = 1) => {
     dispatch(startLoadingComisiones());
     try {
-      const data = await get("/comisiones-bancarias");
+      const data = await get("/comisiones-bancarias", { page });
+      
       dispatch(setComisiones(data));
     } catch (error) {
-      Swal.fire({
-        icon: "error",
-        title: "Error",
-        text: "No se pudieron obtener las comisiones bancarias.",
-      });
+      Swal.fire('Error', 'No se pudieron obtener las comisiones.', 'error');
     }
   };
 
   return {
     comisiones,
     isLoading,
+    totalItems,
+    totalPages,
+    currentPage,
+    pageSize,
     fetchComisiones,
   };
 };
