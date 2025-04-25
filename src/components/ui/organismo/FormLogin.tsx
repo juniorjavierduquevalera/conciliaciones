@@ -1,9 +1,9 @@
 "use client";
 import React from "react";
-import FormInput from "../moleculas/FormInput";
+import Input from "../atomos/Input";
 import Button from "../atomos/Button";
 import { useInputValues } from "src/hooks/useInputType";
-import { useAuth } from "src/context/AuthContext";
+//import { useAuth } from "src/context/AuthContext";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import Icons from "../atomos/Icons";
@@ -36,7 +36,7 @@ const FormLogin: React.FC = () => {
     <div>
       <Icons />
       <form className="transition-all duration-300 flex flex-col gap-y-5">
-    <FormInput
+    <Input
           type="email"
           placeholder="Correo electrónico"
           label="Digite su email"
@@ -44,7 +44,7 @@ const FormLogin: React.FC = () => {
           onChange={handleChange("email")}
           id="email"
         />
-        <FormInput
+        <Input
           type="password"
           placeholder="Contraseña"
           label="Digite su contraseña"

@@ -13,7 +13,7 @@ const Input: React.FC<InputProps> = ({
   type,
   placeholder,
   value,
-  onChange,
+  onChange,   
   id,
   label, 
 }) => {
