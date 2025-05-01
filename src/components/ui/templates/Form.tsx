@@ -1,8 +1,9 @@
 "use client";
 import React, { useState } from "react";
-import FormLogin from "../organismo/FormLogin";
-import FormRegister from "../organismo/FormRegister";
 import Image from "next/image";
+import RegisterPage from "src/app/auth2/page";
+import LoginPage from "src/app/auth/login/page";
+
 export default function Form() {
   const [showRegisterForm, setShowRegisterForm] = useState(false);
 
@@ -47,9 +48,9 @@ export default function Form() {
           </button>
         </div>
       </div>
-      <div className="bg-white/50 p-8 rounded shadow-md w-96 height-div">
-        {!showRegisterForm && <FormLogin />}
-        {showRegisterForm && <FormRegister />}
+      <div className="p-8 rounded shadow-md w-96 height-div flex justify-center">
+        {!showRegisterForm && <LoginPage />}
+        {showRegisterForm && <RegisterPage/>}
       </div>
     </div>
   );

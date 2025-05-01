@@ -16,12 +16,12 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="bg-white p-8 rounded-lg shadow-md w-96">
+    <div className="flex items-center justify-center ">
+      <div className="p-8 w-96">
         <h2 className="text-2xl font-semibold text-center text-gray-700 mb-6">
           Iniciar Sesión
         </h2>
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4 flex flex-col">
           <div>
             <label className="block text-gray-600">Correo Electrónico</label>
             <input
@@ -30,7 +30,7 @@ export default function LoginPage() {
               value={form.email}
               onChange={handleChange}
               required
-              className="w-full p-2 border border-gray-300 rounded mt-1 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-green-700"
             />
           </div>
           <div>
@@ -41,13 +41,13 @@ export default function LoginPage() {
               value={form.password}
               onChange={handleChange}
               required
-              className="w-full p-2 border border-gray-300 rounded mt-1 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-green-700"
             />
           </div>
           <button
             type="submit"
             disabled={status === "checking"}
-            className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600 transition disabled:opacity-50"
+            className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           >
             {status === "checking" ? "Cargando..." : "Iniciar Sesión"}
           </button>
@@ -56,3 +56,4 @@ export default function LoginPage() {
     </div>
   );
 }
+

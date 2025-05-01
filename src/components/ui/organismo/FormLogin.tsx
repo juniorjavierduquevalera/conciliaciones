@@ -15,7 +15,7 @@ interface Values {
 }
 
 const FormLogin: React.FC = () => {
-  const { login } = useAuth();
+  //const { login } = useAuth();
   const router = useRouter();
   const { values, handleChange } = useInputValues<Values>({
 
@@ -27,7 +27,7 @@ const FormLogin: React.FC = () => {
     values,
     endpoint: "login",
     onSuccess: (data) => {
-     login(data);
+    // login(data);
       router.push("/");
     }
   });

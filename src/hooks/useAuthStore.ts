@@ -56,7 +56,7 @@ export const useAuthStore = () => {
   }) => {
     dispatch(onChecking());
     try {
-      const data = await post("/users/register", credentials);
+      const data = await post("/users", credentials);
       Cookies.set("x-token", data.token, { expires: 90 });
       const decodedToken = JSON.parse(atob(data.token.split(".")[1]));
       dispatch(onLogin({ user: decodedToken }));
