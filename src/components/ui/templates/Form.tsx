@@ -1,8 +1,8 @@
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
-import RegisterPage from "src/app/auth2/page";
-import LoginPage from "src/app/auth/login/page";
+import RegisterPage from "src/components/ui/organismo/Register";
+import LoginPage from "src/components/ui/organismo/Login";
 
 export default function Form() {
   const [showRegisterForm, setShowRegisterForm] = useState(false);

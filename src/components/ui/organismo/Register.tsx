@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { useAuthStore } from "../../hooks/useAuthStore";
+import { useAuthStore } from "../../../hooks/useAuthStore";
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
